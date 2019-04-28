@@ -1,0 +1,13 @@
+version: "2.2"
+services:
+  geoserver.service:
+    build:
+      ./geoserver
+    command: init
+    container_name: geoserver.service
+    healthcheck:
+      test: curl http://127.0.0.1:8910 || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 2
+    image: geoserver:test
